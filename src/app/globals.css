@@ -1,0 +1,172 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Press+Start+2P&display=swap');
+
+:root {
+  --game-primary: #4c1d95;
+  --game-secondary: #7c3aed;
+  --game-accent: #fcd34d;
+  --game-background: #2d1b69;
+  --game-success: #10b981;
+  --game-danger: #ef4444;
+  --game-x-color: #3b82f6;
+  --game-o-color: #ec4899;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+body {
+  background-color: var(--game-background);
+  background-image: radial-gradient(circle at 25px 25px, rgba(255, 255, 255, 0.2) 2%, transparent 0%), 
+                    radial-gradient(circle at 75px 75px, rgba(255, 255, 255, 0.2) 2%, transparent 0%);
+  background-size: 100px 100px;
+  font-family: 'Bangers', cursive;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.game-title {
+  font-family: 'Press Start 2P', cursive;
+  text-shadow: 3px 3px 0px var(--game-primary),
+               0 0 10px var(--game-accent);
+  color: var(--game-accent);
+  letter-spacing: 1px;
+  animation: title-glow 3s infinite alternate;
+  line-height: 1.4;
+  display: inline-block;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: rgba(76, 29, 149, 0.3);
+  border: 2px solid rgba(124, 58, 237, 0.5);
+}
+
+@keyframes title-glow {
+  0% {
+    text-shadow: 3px 3px 0px var(--game-primary),
+                 0 0 10px var(--game-accent);
+  }
+  100% {
+    text-shadow: 3px 3px 0px var(--game-primary),
+                 0 0 15px var(--game-accent),
+                 0 0 25px var(--game-accent);
+  }
+}
+
+.game-board {
+  background-color: var(--game-primary);
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5), 
+              inset 0 0 8px rgba(255, 255, 255, 0.3),
+              0 0 20px rgba(124, 58, 237, 0.5);
+  border: 3px solid var(--game-secondary);
+  position: relative;
+  overflow: hidden;
+}
+
+.game-board::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.game-square {
+  transition: all 0.2s ease;
+  transform: scale(0.95);
+  font-family: 'Bangers', cursive;
+}
+
+.game-square:hover:not(:disabled) {
+  transform: scale(1);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.game-button {
+  transition: all 0.2s;
+  transform: translateY(0);
+  font-family: 'Press Start 2P', cursive;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  line-height: 1;
+}
+
+.game-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.game-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.winner-text {
+  text-shadow: 0 0 10px rgba(255, 255, 100, 0.8);
+  animation: pulse 0.8s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.x-mark {
+  color: var(--game-x-color);
+  text-shadow: 0 0 8px rgba(59, 130, 246, 0.7);
+}
+
+.o-mark {
+  color: var(--game-o-color);
+  text-shadow: 0 0 8px rgba(236, 72, 153, 0.7);
+}
+
+/* Celebration animations */
+@keyframes popIn {
+  0% {
+    transform: scale(0.1);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.celebration-popup {
+  animation: popIn 0.5s ease-out forwards, fadeInOut 5s ease-in-out forwards;
+}
+
+.celebration-popup h2 {
+  animation: pulse 0.8s infinite;
+}
+
+/* Make the winner text more exciting */
+.winner-text {
+  text-shadow: 0 0 10px rgba(255, 255, 100, 0.8);
+  animation: pulse 0.8s infinite;
+} 
