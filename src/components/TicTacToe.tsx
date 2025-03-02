@@ -1,11 +1,12 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { LeaderboardEntry } from './Leaderboard'
 import dynamic from 'next/dynamic'
+import Confetti from 'react-confetti'
 
 // Dynamically import Confetti with no SSR to avoid hydration issues
-const Confetti = dynamic(() => import('react-confetti'), {
+const ConfettiComponent = dynamic(() => import('react-confetti'), {
   ssr: false
 })
 
@@ -24,12 +25,21 @@ interface BoardState {
 
 interface TicTacToeProps {
   currentUsername: string;
-  opponentName: string;
-  updateLeaderboard: (username: string, wins: number) => void;
+  updateLeaderboard: (name: string, winsToAdd: number) => void;
   onGameEnd: () => void;
+  gameMode: 'pvp' | 'pvc';
+  player1: { name: string; symbol: 'X' | 'O' };
+  player2: { name: string; symbol: 'X' | 'O' };
 }
 
-const TicTacToe = ({ currentUsername, opponentName, updateLeaderboard, onGameEnd }: TicTacToeProps) => {
+const TicTacToe: React.FC<TicTacToeProps> = ({
+  currentUsername,
+  updateLeaderboard,
+  onGameEnd,
+  gameMode,
+  player1,
+  player2
+}) => {
   const [state, setState] = useState<BoardState>({
     squares: Array(9).fill(null),
     xIsNext: true,
@@ -97,15 +107,15 @@ const TicTacToe = ({ currentUsername, opponentName, updateLeaderboard, onGameEnd
       if (winner === 'X') {
         newXScore++;
         showCelebration = true;
-        winnerUsername = currentUsername;
+        winnerUsername = player1.name;
         // Update leaderboard when X wins (player is X)
         // Just increment by 1, don't use the local score
-        updateLeaderboard(currentUsername, 1);
+        updateLeaderboard(player1.name, 1);
         gameEndedRef.current = true;
       } else if (winner === 'O') {
         newOScore++;
         showCelebration = true;
-        winnerUsername = opponentName || 'Opponent';
+        winnerUsername = player2.name;
         gameEndedRef.current = true;
       } else if (winner === null && squares.every(square => square !== null)) {
         newDraws++;
@@ -139,8 +149,11 @@ const TicTacToe = ({ currentUsername, opponentName, updateLeaderboard, onGameEnd
           }, 1000);
         }, 5000)
       }
+    } else if (!xIsNext && gameMode === 'pvc' && !winner) {
+      // Computer's turn
+      setTimeout(() => makeComputerMove(squares), 500);
     }
-  }, [squares, currentUsername, opponentName, updateLeaderboard, onGameEnd, gameEndedRef, gameOver])
+  }, [squares, currentUsername, updateLeaderboard, onGameEnd, gameEndedRef, gameOver, xIsNext, gameMode])
 
   // Handle click on square
   const handleClick = (i: number) => {
@@ -148,7 +161,7 @@ const TicTacToe = ({ currentUsername, opponentName, updateLeaderboard, onGameEnd
     if (squares[i] || gameOver) return
 
     const newSquares = [...squares]
-    newSquares[i] = xIsNext ? 'X' : 'O'
+    newSquares[i] = xIsNext ? player1.symbol : player2.symbol
 
     setState({
       ...state,
@@ -213,15 +226,34 @@ const TicTacToe = ({ currentUsername, opponentName, updateLeaderboard, onGameEnd
   } else if (gameOver) {
     status = 'DRAW!'
   } else {
-    status = `${xIsNext ? 'X' : 'O'}'S TURN`
+    status = `${xIsNext ? player1.name : player2.name}'S TURN (${xIsNext ? player1.symbol : player2.symbol})`
   }
+
+  const makeComputerMove = (currentBoard: (Player)[]) => {
+    // Simple AI: Find first empty spot
+    const emptySpots = currentBoard
+      .map((spot, index) => spot === null ? index : null)
+      .filter((spot): spot is number => spot !== null);
+
+    if (emptySpots.length > 0) {
+      // For now, just choose a random empty spot
+      const randomSpot = emptySpots[Math.floor(Math.random() * emptySpots.length)];
+      const newBoard = [...currentBoard];
+      newBoard[randomSpot] = xIsNext ? player1.symbol : player2.symbol;
+      setState(prevState => ({
+        ...prevState,
+        squares: newBoard,
+        xIsNext: !xIsNext,
+      }))
+    }
+  };
 
   return (
     <div className="flex flex-col items-center relative">
       {/* Confetti celebration when someone wins */}
       {showCelebration && (
         <>
-          <Confetti
+          <ConfettiComponent
             width={windowSize.width}
             height={windowSize.height}
             recycle={false}
@@ -249,7 +281,7 @@ const TicTacToe = ({ currentUsername, opponentName, updateLeaderboard, onGameEnd
         {/* Scoreboard */}
         <div className="grid grid-cols-3 gap-3 text-center bg-indigo-900 bg-opacity-50 p-2 rounded-xl border-2 border-indigo-400 shadow-lg w-full max-w-xs mb-2">
           <div className="flex flex-col px-2">
-            <span className="text-sm text-blue-300">X</span>
+            <span className="text-sm text-blue-300">{player1.name}</span>
             <span className="text-2xl font-bold x-mark">{xScore}</span>
           </div>
           <div className="flex flex-col px-2">
@@ -257,7 +289,7 @@ const TicTacToe = ({ currentUsername, opponentName, updateLeaderboard, onGameEnd
             <span className="text-2xl font-bold text-yellow-300">{draws}</span>
           </div>
           <div className="flex flex-col px-2">
-            <span className="text-sm text-pink-300">O</span>
+            <span className="text-sm text-pink-300">{player2.name}</span>
             <span className="text-2xl font-bold o-mark">{oScore}</span>
           </div>
         </div>
