@@ -163,18 +163,18 @@ export default function Home() {
   }
 
   return (
-    <main className="flex flex-col items-center justify-between min-h-screen p-4 pb-2">
-      <div className="w-full text-center pt-4 pb-3 mb-2">
+    <main className="flex flex-col items-center min-h-screen p-2 sm:p-4">
+      <div className="w-full text-center pt-2 sm:pt-4 pb-2 sm:pb-3 mb-1 sm:mb-2">
         <div className="relative inline-block cursor-pointer hover:scale-105 transition-transform duration-200" onClick={handleTitleClick}>
-          <span className="absolute -top-8 left-1/2 transform -translate-x-1/2 text-4xl">👑</span>
-          <h1 className="game-title text-xl sm:text-2xl md:text-3xl font-bold mt-6 px-4">
+          <span className="absolute -top-6 sm:-top-8 left-1/2 transform -translate-x-1/2 text-3xl sm:text-4xl">👑</span>
+          <h1 className="game-title text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mt-4 sm:mt-6 px-2 sm:px-4">
             World's Best TIC TAC TOE
           </h1>
         </div>
       </div>
 
-      <div className="w-full max-w-6xl mx-auto flex flex-col md:flex-row md:gap-6">
-        <div className="w-full md:w-3/5 mb-4 md:mb-0">
+      <div className="w-full flex flex-col lg:flex-row lg:items-start lg:justify-center gap-4 max-w-7xl mx-auto">
+        <div className="w-full lg:w-3/5">
           <TicTacToe
             currentUsername={players.player1.name}
             updateLeaderboard={updateLeaderboard}
@@ -185,15 +185,15 @@ export default function Home() {
           />
         </div>
         
-        <div className="w-full md:w-2/5 flex flex-col">
+        <div className="w-full lg:w-2/5 flex flex-col">
           <Leaderboard data={leaderboard.slice(0, 10)} />
           
-          <div className="flex justify-center mt-4">
+          <div className="flex justify-center mt-2 sm:mt-4">
             <button 
               onClick={handleGameEnd}
-              className="game-button px-4 py-2 text-xs bg-purple-600 hover:bg-purple-700 text-white rounded-lg shadow-lg border-b-4 border-purple-800 flex items-center"
+              className="game-button px-3 sm:px-4 py-1.5 sm:py-2 text-xs bg-purple-600 hover:bg-purple-700 text-white rounded-lg shadow-lg border-b-4 border-purple-800 flex items-center"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
               </svg>
               Switch Players
@@ -202,7 +202,7 @@ export default function Home() {
         </div>
       </div>
       
-      <footer className="w-full text-center text-xs text-indigo-300 opacity-70 mt-2">
+      <footer className="w-full text-center text-[10px] sm:text-xs text-indigo-300 opacity-70 mt-1 sm:mt-2">
         <p>Challenge a friend and see who's the Tic Tac Toe champion!</p>
       </footer>
     </main>

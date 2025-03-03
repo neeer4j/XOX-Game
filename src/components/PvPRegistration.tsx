@@ -35,90 +35,78 @@ const PvPRegistration: React.FC<PvPRegistrationProps> = ({ onRegister, previousU
   };
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center" style={{
+    <div className="min-h-screen w-full flex items-center justify-center p-2 sm:p-4" style={{
       backgroundColor: 'var(--game-background)',
       backgroundImage: `radial-gradient(circle at 25px 25px, rgba(255, 255, 255, 0.2) 2%, transparent 0%), 
                        radial-gradient(circle at 75px 75px, rgba(255, 255, 255, 0.2) 2%, transparent 0%)`,
       backgroundSize: '100px 100px'
     }}>
-      <div className="w-full max-w-md mx-4 my-8">
-        <div className="mb-12">
+      <div className="w-full max-w-md mx-auto px-3 sm:px-0">
+        <div className="mb-6 sm:mb-8">
           <button
             onClick={onBack}
-            className="mb-8 px-6 py-3 bg-gradient-to-r from-gray-800 to-gray-700 text-white rounded-xl
+            className="mb-4 sm:mb-6 px-3 sm:px-4 py-2 bg-gradient-to-r from-gray-800 to-gray-700 text-white rounded-xl
                      hover:from-gray-700 hover:to-gray-600 transform hover:scale-[1.02] transition-all duration-200
                      shadow-[0_0_15px_rgba(75,85,99,0.3)] hover:shadow-[0_0_20px_rgba(75,85,99,0.5)]
-                     flex items-center gap-3 font-medium"
+                     flex items-center gap-2 text-sm sm:text-base font-medium"
           >
-            <span className="text-xl">←</span>
+            <span className="text-base sm:text-lg">←</span>
             <span>Back to Mode Selection</span>
           </button>
           
           <div className="text-center">
-            <h1 className="game-title text-5xl font-bold mb-4 text-white">
+            <h1 className="game-title text-2xl sm:text-3xl md:text-4xl font-bold mb-2 text-white">
               Tic Tac Toe
             </h1>
-            <p className="text-indigo-300 text-lg">
+            <p className="text-indigo-300 text-xs sm:text-sm">
               Enter player names and choose symbols
             </p>
           </div>
         </div>
         
-        <form onSubmit={handleSubmit} className="space-y-8">
+        <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
           {/* Player 1 Section */}
-          <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 space-y-6 shadow-[0_0_15px_rgba(168,85,247,0.2)]">
-            <div className="flex items-center justify-between">
-              <h2 className="text-2xl font-bold text-purple-400">Player 1</h2>
-              <div className="h-1 flex-grow mx-4 bg-gradient-to-r from-purple-500/50 to-transparent rounded"></div>
-            </div>
-            
-            <div className="space-y-4">
+          <div className="bg-indigo-900/30 rounded-xl p-3 sm:p-4 border-2 border-indigo-400/30">
+            <h2 className="text-base sm:text-lg font-bold text-white mb-2 sm:mb-3">Player 1</h2>
+            <div className="grid grid-cols-2 gap-2 sm:gap-3">
               <div>
-                <label className="block text-sm font-medium text-gray-200 mb-2">Name</label>
+                <label className="block text-xs sm:text-sm font-medium text-gray-200 mb-1 sm:mb-2">Name</label>
                 <div className="relative">
                   <input
                     type="text"
                     value={player1Name}
                     onChange={(e) => setPlayer1Name(e.target.value)}
-                    className="w-full px-4 py-3 bg-gray-700/50 text-white rounded-lg focus:ring-2 focus:ring-purple-500 focus:outline-none placeholder-gray-400"
-                    placeholder="Enter your name"
+                    onFocus={() => setShowPreviousUsers1(true)}
+                    className="w-full px-3 py-2 bg-gray-700/50 border-2 border-gray-600 rounded-lg text-white text-sm sm:text-base
+                             focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
+                    placeholder="Enter name"
                   />
-                  {previousUsers.length > 0 && (
-                    <button
-                      type="button"
-                      onClick={() => setShowPreviousUsers1(!showPreviousUsers1)}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-purple-400 hover:text-purple-300 transition-colors"
-                    >
-                      ▼
-                    </button>
+                  {showPreviousUsers1 && previousUsers.length > 0 && (
+                    <div className="absolute top-full left-0 right-0 mt-1 bg-gray-700/50 rounded-lg overflow-hidden border border-gray-600 z-10">
+                      {previousUsers.map((user) => (
+                        <button
+                          key={user}
+                          type="button"
+                          onClick={() => {
+                            setPlayer1Name(user);
+                            setShowPreviousUsers1(false);
+                          }}
+                          className="w-full px-3 py-1.5 text-left text-white text-sm hover:bg-purple-600/20 transition-colors"
+                        >
+                          {user}
+                        </button>
+                      ))}
+                    </div>
                   )}
                 </div>
-                {showPreviousUsers1 && (
-                  <div className="mt-2 bg-gray-700/50 rounded-lg overflow-hidden border border-gray-600">
-                    {previousUsers.map((user) => (
-                      <button
-                        key={user}
-                        type="button"
-                        onClick={() => {
-                          setPlayer1Name(user);
-                          setShowPreviousUsers1(false);
-                        }}
-                        className="w-full px-4 py-2 text-left text-white hover:bg-purple-600/20 transition-colors"
-                      >
-                        {user}
-                      </button>
-                    ))}
-                  </div>
-                )}
               </div>
-
               <div>
-                <label className="block text-sm font-medium text-gray-200 mb-2">Choose Symbol</label>
-                <div className="grid grid-cols-2 gap-4">
+                <label className="block text-xs sm:text-sm font-medium text-gray-200 mb-1 sm:mb-2">Symbol</label>
+                <div className="grid grid-cols-2 gap-2 sm:gap-3">
                   <button
                     type="button"
                     onClick={() => setPlayer1Symbol('X')}
-                    className={`py-3 rounded-lg font-bold text-2xl transition-all duration-300
+                    className={`py-2 sm:py-3 rounded-lg font-bold text-xl sm:text-2xl transition-all duration-300
                       ${player1Symbol === 'X'
                         ? 'bg-purple-600 text-white shadow-[0_0_15px_rgba(168,85,247,0.5)]'
                         : 'bg-gray-700/50 text-gray-400 hover:bg-gray-700/70'
@@ -129,7 +117,7 @@ const PvPRegistration: React.FC<PvPRegistrationProps> = ({ onRegister, previousU
                   <button
                     type="button"
                     onClick={() => setPlayer1Symbol('O')}
-                    className={`py-3 rounded-lg font-bold text-2xl transition-all duration-300
+                    className={`py-2 sm:py-3 rounded-lg font-bold text-xl sm:text-2xl transition-all duration-300
                       ${player1Symbol === 'O'
                         ? 'bg-blue-600 text-white shadow-[0_0_15px_rgba(59,130,246,0.5)]'
                         : 'bg-gray-700/50 text-gray-400 hover:bg-gray-700/70'
@@ -143,55 +131,43 @@ const PvPRegistration: React.FC<PvPRegistrationProps> = ({ onRegister, previousU
           </div>
 
           {/* Player 2 Section */}
-          <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 space-y-6 shadow-[0_0_15px_rgba(59,130,246,0.2)]">
-            <div className="flex items-center justify-between">
-              <h2 className="text-2xl font-bold text-blue-400">Player 2</h2>
-              <div className="h-1 flex-grow mx-4 bg-gradient-to-r from-blue-500/50 to-transparent rounded"></div>
-            </div>
-            
-            <div className="space-y-4">
+          <div className="bg-indigo-900/30 rounded-xl p-3 sm:p-4 border-2 border-indigo-400/30">
+            <h2 className="text-base sm:text-lg font-bold text-white mb-2 sm:mb-3">Player 2</h2>
+            <div className="grid grid-cols-2 gap-2 sm:gap-3">
               <div>
-                <label className="block text-sm font-medium text-gray-200 mb-2">Name</label>
+                <label className="block text-xs sm:text-sm font-medium text-gray-200 mb-1 sm:mb-2">Name</label>
                 <div className="relative">
                   <input
                     type="text"
                     value={player2Name}
                     onChange={(e) => setPlayer2Name(e.target.value)}
-                    className="w-full px-4 py-3 bg-gray-700/50 text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none placeholder-gray-400"
-                    placeholder="Enter your name"
+                    onFocus={() => setShowPreviousUsers2(true)}
+                    className="w-full px-3 py-2 bg-gray-700/50 border-2 border-gray-600 rounded-lg text-white text-sm sm:text-base
+                             focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                    placeholder="Enter name"
                   />
-                  {previousUsers.length > 0 && (
-                    <button
-                      type="button"
-                      onClick={() => setShowPreviousUsers2(!showPreviousUsers2)}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-blue-400 hover:text-blue-300 transition-colors"
-                    >
-                      ▼
-                    </button>
+                  {showPreviousUsers2 && previousUsers.length > 0 && (
+                    <div className="absolute top-full left-0 right-0 mt-1 bg-gray-700/50 rounded-lg overflow-hidden border border-gray-600 z-10">
+                      {previousUsers.map((user) => (
+                        <button
+                          key={user}
+                          type="button"
+                          onClick={() => {
+                            setPlayer2Name(user);
+                            setShowPreviousUsers2(false);
+                          }}
+                          className="w-full px-3 py-1.5 text-left text-white text-sm hover:bg-blue-600/20 transition-colors"
+                        >
+                          {user}
+                        </button>
+                      ))}
+                    </div>
                   )}
                 </div>
-                {showPreviousUsers2 && (
-                  <div className="mt-2 bg-gray-700/50 rounded-lg overflow-hidden border border-gray-600">
-                    {previousUsers.map((user) => (
-                      <button
-                        key={user}
-                        type="button"
-                        onClick={() => {
-                          setPlayer2Name(user);
-                          setShowPreviousUsers2(false);
-                        }}
-                        className="w-full px-4 py-2 text-left text-white hover:bg-blue-600/20 transition-colors"
-                      >
-                        {user}
-                      </button>
-                    ))}
-                  </div>
-                )}
               </div>
-
               <div>
-                <label className="block text-sm font-medium text-gray-200 mb-2">Symbol</label>
-                <div className="py-3 rounded-lg bg-gray-700/50 text-center font-bold text-2xl text-gray-400">
+                <label className="block text-xs sm:text-sm font-medium text-gray-200 mb-1 sm:mb-2">Symbol</label>
+                <div className="py-2 sm:py-3 rounded-lg bg-gray-700/50 text-center font-bold text-xl sm:text-2xl text-gray-400">
                   {player1Symbol === 'X' ? 'O' : 'X'}
                 </div>
               </div>
@@ -199,14 +175,14 @@ const PvPRegistration: React.FC<PvPRegistrationProps> = ({ onRegister, previousU
           </div>
 
           {error && (
-            <div className="text-red-400 text-center text-sm bg-red-900/20 py-2 px-4 rounded-lg">
+            <div className="text-red-400 text-center text-xs sm:text-sm bg-red-900/20 py-2 px-4 rounded-lg">
               {error}
             </div>
           )}
 
           <button
             type="submit"
-            className="w-full py-4 px-6 bg-gradient-to-r from-purple-600 to-blue-600 text-white text-lg font-bold rounded-xl
+            className="w-full py-3 sm:py-4 px-6 bg-gradient-to-r from-purple-600 to-blue-600 text-white text-base sm:text-lg font-bold rounded-xl
                      hover:from-purple-700 hover:to-blue-700 transform hover:scale-[1.02] transition-all duration-200
                      shadow-[0_0_15px_rgba(168,85,247,0.3)] hover:shadow-[0_0_20px_rgba(168,85,247,0.5)]"
           >
