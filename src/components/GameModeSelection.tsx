@@ -35,19 +35,19 @@ const GameModeSelection: React.FC<GameModeSelectionProps> = ({ onModeSelect }) =
         <div className="flex flex-col gap-4 w-full max-w-xs">
           <button
             onClick={() => onModeSelect('pvp')}
-            className="game-button w-full px-6 py-4 text-lg font-bold text-white bg-purple-600 rounded-lg 
-                       hover:bg-purple-700 transform hover:scale-105 transition-all duration-200 
-                       shadow-[0_0_15px_rgba(168,85,247,0.5)] hover:shadow-[0_0_20px_rgba(168,85,247,0.7)]
-                       animate-[slideRight_0.5s_ease-out]"
+            className="game-button w-full px-6 py-4 text-lg font-bold text-white bg-yellow-500 rounded-lg 
+                       hover:bg-yellow-600 transform hover:scale-105 transition-all duration-200 
+                       shadow-[0_0_15px_rgba(255,214,0,0.5)] hover:shadow-[0_0_20px_rgba(255,214,0,0.7)]
+                       animate-[slideRight_0.5s_ease-out] border-2 border-yellow-700"
           >
             Player vs Player
           </button>
           <button
             onClick={() => onModeSelect('pvc')}
-            className="game-button w-full px-6 py-4 text-lg font-bold text-white bg-blue-600 rounded-lg 
-                       hover:bg-blue-700 transform hover:scale-105 transition-all duration-200 
-                       shadow-[0_0_15px_rgba(59,130,246,0.5)] hover:shadow-[0_0_20px_rgba(59,130,246,0.7)]
-                       animate-[slideLeft_0.5s_ease-out]"
+            className="game-button w-full px-6 py-4 text-lg font-bold text-white bg-red-600 rounded-lg 
+                       hover:bg-red-700 transform hover:scale-105 transition-all duration-200 
+                       shadow-[0_0_15px_rgba(185,28,28,0.5)] hover:shadow-[0_0_20px_rgba(185,28,28,0.7)]
+                       animate-[slideLeft_0.5s_ease-out] border-2 border-red-800"
           >
             Player vs Computer
           </button>
