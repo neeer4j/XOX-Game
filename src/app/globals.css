@@ -1,8 +1,7 @@
-.game-board {
+ .game-board {
   /* ...existing styles... */
   animation: boardGlow 2s infinite alternate;
-
-
+}
 @keyframes boardGlow {
   0% {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5), 0 0 20px var(--game-secondary), 0 0 0px var(--game-accent);
