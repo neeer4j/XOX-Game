@@ -3,7 +3,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { LeaderboardEntry } from './Leaderboard'
 import dynamic from 'next/dynamic'
-import Confetti from 'react-confetti'
 
 // Dynamically import Confetti with no SSR to avoid hydration issues
 const ConfettiComponent = dynamic(() => import('react-confetti'), {
