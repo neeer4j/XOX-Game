@@ -1,3 +1,54 @@
+/* Playful card and animation for registration */
+.playful-card {
+  background: linear-gradient(135deg, #fcd34d 0%, #ec4899 50%, #7c3aed 100%);
+  border-radius: 2.5rem;
+  border: 4px solid #fffbe6;
+  box-shadow: 0 8px 32px 0 rgba(252, 211, 77, 0.25), 0 0 40px 10px #ec4899;
+  max-width: 440px;
+  width: 100%;
+  margin: 0 auto;
+  z-index: 10;
+  backdrop-filter: blur(2px);
+  transition: box-shadow 0.3s, transform 0.2s;
+  animation: bounceIn 1s cubic-bezier(.68,-0.55,.27,1.55);
+}
+
+.playful-card:hover {
+  box-shadow: 0 16px 64px 0 rgba(252, 211, 77, 0.35), 0 0 80px 20px #ec4899;
+  transform: scale(1.03) rotate(-1deg);
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.7) translateY(100px);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.05) translateY(-10px);
+  }
+  80% {
+    transform: scale(0.98) translateY(5px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.playful-title {
+  font-family: 'Bangers', cursive;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 0px #fffbe6, 0 0 20px #fcd34d, 0 0 40px #ec4899;
+}
+
+.playful-btn {
+  font-family: 'Press Start 2P', cursive;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: 2px solid #fffbe6;
+  box-shadow: 0 2px 8px #fcd34d44;
+}
 /* Landing page enhancements */
 .landing-bg {
   background-color: var(--game-background);
