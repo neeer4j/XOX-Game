@@ -38,24 +38,23 @@ const PvPRegistration: React.FC<PvPRegistrationProps> = ({ onRegister, previousU
   return (
     <div className="landing-bg min-h-screen w-full flex items-center justify-center relative overflow-hidden">
       <FallingSymbols />
-      <div className="playful-card w-full max-w-md mx-auto px-3 sm:px-0 py-8 sm:py-10 z-10 animate-bounceIn">
+      <div className="landing-card w-full max-w-md mx-auto px-3 sm:px-0 py-8 sm:py-10 z-10">
         <div className="mb-6 sm:mb-8">
           <button
             onClick={onBack}
-            className="mb-4 sm:mb-6 px-3 sm:px-4 py-2 bg-gradient-to-r from-pink-600 to-purple-600 text-white rounded-xl
-                     hover:from-pink-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-200
-                     shadow-lg hover:shadow-xl flex items-center gap-2 text-sm sm:text-base font-bold"
+            className="mb-4 sm:mb-6 px-3 sm:px-4 py-2 bg-gradient-to-r from-gray-800 to-gray-700 text-white rounded-xl
+                     hover:from-gray-700 hover:to-gray-600 transform hover:scale-[1.02] transition-all duration-200
+                     shadow-[0_0_15px_rgba(75,85,99,0.3)] hover:shadow-[0_0_20px_rgba(75,85,99,0.5)] flex items-center gap-2 text-sm sm:text-base font-medium"
           >
             <span className="text-base sm:text-lg">←</span>
             <span>Back to Mode Selection</span>
           </button>
           <div className="text-center">
-            <span className="inline-block text-3xl sm:text-4xl md:text-5xl animate-bounce">🎮</span>
-            <h1 className="game-title text-3xl sm:text-4xl md:text-5xl font-bold mb-2 text-yellow-300 playful-title">
+            <h1 className="game-title text-2xl sm:text-3xl md:text-4xl font-bold mb-2 text-white">
               PvP Registration
             </h1>
-            <p className="text-pink-200 text-xs sm:text-base font-semibold">
-              Enter your fun nicknames and pick your symbols!
+            <p className="text-indigo-300 text-xs sm:text-sm">
+              Enter player names and choose symbols
             </p>
           </div>
         </div>
@@ -174,11 +173,11 @@ const PvPRegistration: React.FC<PvPRegistrationProps> = ({ onRegister, previousU
           )}
           <button
             type="submit"
-            className="w-full py-3 sm:py-4 px-6 bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-600 text-white text-lg font-extrabold rounded-2xl
-                     hover:from-yellow-300 hover:via-pink-400 hover:to-purple-500 transform hover:scale-110 transition-all duration-200
-                     shadow-xl hover:shadow-2xl tracking-wider playful-btn"
+            className="w-full py-3 sm:py-4 px-6 bg-gradient-to-r from-purple-600 to-blue-600 text-white text-base sm:text-lg font-bold rounded-xl
+                     hover:from-purple-700 hover:to-blue-700 transform hover:scale-[1.02] transition-all duration-200
+                     shadow-[0_0_15px_rgba(168,85,247,0.3)] hover:shadow-[0_0_20px_rgba(168,85,247,0.5)]"
           >
-            <span className="mr-2">✨</span> Start Game <span className="ml-2">😃</span>
+            Start Game
           </button>
         </form>
       </div>
