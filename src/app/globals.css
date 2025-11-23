@@ -89,27 +89,30 @@ body {
 .landing-card {
   background: rgba(44, 22, 100, 0.95);
   border-radius: 2rem;
-  .game-title {
-    font-family: 'Press Start 2P', cursive;
-    text-shadow: 4px 4px 0px var(--game-primary),
-                 0 0 20px var(--game-accent),
-                 0 0 40px var(--game-secondary);
-    color: var(--game-accent);
-    letter-spacing: 2px;
-    line-height: 1.6;
-    display: inline-block;
-    padding: 1rem;
-    border-radius: 1rem;
-    background-color: rgba(185, 28, 28, 0.25);
-    border: 3px solid var(--game-secondary);
-    text-align: center;
-    transition: all 0.3s ease;
-  }
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(120deg, rgba(76,29,149,0.2) 0%, rgba(252,211,77,0.08) 100%);
-  /* pointer-events: none; */
+  padding: 1.5rem;
+  max-width: 920px;
+  width: calc(100% - 2rem);
+  margin: 0 auto;
   z-index: 1;
+  background: linear-gradient(120deg, rgba(76,29,149,0.08) 0%, rgba(255,214,0,0.02) 100%);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+}
+
+.landing-card .game-title {
+  font-family: 'Press Start 2P', cursive;
+  text-shadow: 4px 4px 0px var(--game-primary),
+               0 0 20px var(--game-accent),
+               0 0 40px var(--game-secondary);
+  color: var(--game-accent);
+  letter-spacing: 2px;
+  line-height: 1.6;
+  display: inline-block;
+  padding: 1rem;
+  border-radius: 1rem;
+  background-color: rgba(185, 28, 28, 0.15);
+  border: 3px solid var(--game-secondary);
+  text-align: center;
+  transition: all 0.3s ease;
 }
 
 
