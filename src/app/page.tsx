@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import UserRegistration from '@/components/UserRegistration'
+import FallingSymbols from '@/components/FallingSymbols'
 import PvPRegistration from '@/components/PvPRegistration'
 import Leaderboard, { LeaderboardEntry } from '@/components/Leaderboard'
 import GameModeSelection from '@/components/GameModeSelection'
@@ -166,7 +167,7 @@ export default function Home() {
     <main className="relative flex flex-col items-center min-h-screen p-2 sm:p-4 overflow-x-hidden">
       {/* Animated background */}
       <div className="fixed inset-0 z-0 pointer-events-none">
-        {require('@/components/FallingSymbols').default()}
+        <FallingSymbols />
       </div>
 
       {/* Game Info Bar */}
