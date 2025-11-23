@@ -1,3 +1,5 @@
+"use client"
+
 import React from 'react';
 import FallingSymbols from './FallingSymbols';
 
@@ -27,7 +29,7 @@ const GameModeSelection: React.FC<GameModeSelectionProps> = ({ onModeSelect }) =
         </svg>
         <span>Meet the Developer</span>
       </a>
-      <div className="landing-card relative flex flex-col items-center justify-center px-6 py-10 sm:px-10 sm:py-14 z-10 shadow-2xl animate-[fadeIn_1s_ease-out]">
+      <div className="landing-card relative flex flex-col items-center justify-center px-6 py-10 sm:px-10 sm:py-14 z-10 shadow-2xl animate-[fadeIn_1s_ease-out] max-w-[680px]">
         <span className="absolute -top-8 left-1/2 transform -translate-x-1/2 text-4xl animate-[bounce_2s_infinite]">👑</span>
         <h1 className="game-title text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white floating-title px-3 py-3 sm:px-4 sm:py-4 mb-6 text-center">
           World's Best<br />TIC TAC TOE
