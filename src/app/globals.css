@@ -11,7 +11,7 @@
   100% {
     box-shadow: 0 5px 25px 5px var(--game-accent), 0 0 40px 10px var(--game-secondary);
     border-color: var(--game-secondary);
-
+  }
 }
 /* --- THEME ROOT AND BODY --- */
 :root {
