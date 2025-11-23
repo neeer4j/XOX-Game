@@ -31,8 +31,11 @@ body {
   background-size: 100px 100px;
   font-family: 'Bangers', cursive;
   color: var(--game-accent);
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 /* Playful card and animation for registration */
 .playful-card {
@@ -105,7 +108,7 @@ body {
   position: absolute;
   inset: 0;
   background: linear-gradient(120deg, rgba(76,29,149,0.2) 0%, rgba(252,211,77,0.08) 100%);
-  pointer-events: none;
+  /* pointer-events: none; */
   z-index: 1;
 }
 
@@ -183,7 +186,7 @@ body {
   bottom: 0;
   background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
   z-index: 1;
-  pointer-events: none;
+  /* pointer-events: none; */
 }
 
 .game-square {
