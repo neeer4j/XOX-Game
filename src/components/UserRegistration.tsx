@@ -25,13 +25,8 @@ const UserRegistration: React.FC<UserRegistrationProps> = ({ onRegister, previou
   };
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center p-2 sm:p-4" style={{
-      backgroundColor: 'var(--game-background)',
-      backgroundImage: `radial-gradient(circle at 25px 25px, rgba(255, 255, 255, 0.2) 2%, transparent 0%), 
-                       radial-gradient(circle at 75px 75px, rgba(255, 255, 255, 0.2) 2%, transparent 0%)`,
-      backgroundSize: '100px 100px'
-    }}>
-      <div className="w-full max-w-md mx-auto px-3 sm:px-0">
+    <div className="landing-bg min-h-screen w-full flex items-center justify-center relative overflow-hidden">
+      <div className="landing-card w-full max-w-md mx-auto px-3 sm:px-0 py-8 sm:py-10 z-10">
         <div className="mb-6 sm:mb-8">
           <button
             onClick={onBack}
@@ -43,7 +38,6 @@ const UserRegistration: React.FC<UserRegistrationProps> = ({ onRegister, previou
             <span className="text-base sm:text-lg">←</span>
             <span>Back to Mode Selection</span>
           </button>
-          
           <div className="text-center">
             <h1 className="game-title text-2xl sm:text-3xl md:text-4xl font-bold mb-2 text-white">
               Tic Tac Toe
@@ -53,7 +47,6 @@ const UserRegistration: React.FC<UserRegistrationProps> = ({ onRegister, previou
             </p>
           </div>
         </div>
-
         <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
           <div className="bg-indigo-900/30 rounded-xl p-3 sm:p-4 border-2 border-indigo-400/30">
             <div>
@@ -87,7 +80,6 @@ const UserRegistration: React.FC<UserRegistrationProps> = ({ onRegister, previou
                 )}
               </div>
             </div>
-
             <div className="mt-3">
               <label className="block text-xs sm:text-sm font-medium text-gray-200 mb-1 sm:mb-2">Your Symbol</label>
               <div className="py-2 sm:py-3 rounded-lg bg-gray-700/50 text-center font-bold text-lg sm:text-xl text-blue-400">
@@ -98,13 +90,11 @@ const UserRegistration: React.FC<UserRegistrationProps> = ({ onRegister, previou
               </p>
             </div>
           </div>
-
           {error && (
             <div className="text-red-400 text-center text-xs bg-red-900/20 py-2 px-3 rounded-lg">
               {error}
             </div>
           )}
-
           <button
             type="submit"
             className="w-full py-3 px-4 sm:px-6 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-sm sm:text-base font-bold rounded-xl
@@ -115,6 +105,7 @@ const UserRegistration: React.FC<UserRegistrationProps> = ({ onRegister, previou
           </button>
         </form>
       </div>
+      <div className="landing-bg-overlay"></div>
     </div>
   );
 };

@@ -35,13 +35,8 @@ const PvPRegistration: React.FC<PvPRegistrationProps> = ({ onRegister, previousU
   };
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center p-2 sm:p-4" style={{
-      backgroundColor: 'var(--game-background)',
-      backgroundImage: `radial-gradient(circle at 25px 25px, rgba(255, 255, 255, 0.2) 2%, transparent 0%), 
-                       radial-gradient(circle at 75px 75px, rgba(255, 255, 255, 0.2) 2%, transparent 0%)`,
-      backgroundSize: '100px 100px'
-    }}>
-      <div className="w-full max-w-md mx-auto px-3 sm:px-0">
+    <div className="landing-bg min-h-screen w-full flex items-center justify-center relative overflow-hidden">
+      <div className="landing-card w-full max-w-md mx-auto px-3 sm:px-0 py-8 sm:py-10 z-10">
         <div className="mb-6 sm:mb-8">
           <button
             onClick={onBack}
@@ -53,7 +48,6 @@ const PvPRegistration: React.FC<PvPRegistrationProps> = ({ onRegister, previousU
             <span className="text-base sm:text-lg">←</span>
             <span>Back to Mode Selection</span>
           </button>
-          
           <div className="text-center">
             <h1 className="game-title text-2xl sm:text-3xl md:text-4xl font-bold mb-2 text-white">
               Tic Tac Toe
@@ -63,7 +57,6 @@ const PvPRegistration: React.FC<PvPRegistrationProps> = ({ onRegister, previousU
             </p>
           </div>
         </div>
-        
         <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
           {/* Player 1 Section */}
           <div className="bg-indigo-900/30 rounded-xl p-3 sm:p-4 border-2 border-indigo-400/30">
@@ -129,7 +122,6 @@ const PvPRegistration: React.FC<PvPRegistrationProps> = ({ onRegister, previousU
               </div>
             </div>
           </div>
-
           {/* Player 2 Section */}
           <div className="bg-indigo-900/30 rounded-xl p-3 sm:p-4 border-2 border-indigo-400/30">
             <h2 className="text-base sm:text-lg font-bold text-white mb-2 sm:mb-3">Player 2</h2>
@@ -173,13 +165,11 @@ const PvPRegistration: React.FC<PvPRegistrationProps> = ({ onRegister, previousU
               </div>
             </div>
           </div>
-
           {error && (
             <div className="text-red-400 text-center text-xs sm:text-sm bg-red-900/20 py-2 px-4 rounded-lg">
               {error}
             </div>
           )}
-
           <button
             type="submit"
             className="w-full py-3 sm:py-4 px-6 bg-gradient-to-r from-purple-600 to-blue-600 text-white text-base sm:text-lg font-bold rounded-xl
@@ -190,6 +180,7 @@ const PvPRegistration: React.FC<PvPRegistrationProps> = ({ onRegister, previousU
           </button>
         </form>
       </div>
+      <div className="landing-bg-overlay"></div>
     </div>
   );
 };
