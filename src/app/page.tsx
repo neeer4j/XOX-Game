@@ -163,18 +163,37 @@ export default function Home() {
   }
 
   return (
-    <main className="flex flex-col items-center min-h-screen p-2 sm:p-4">
-      <div className="w-full text-center pt-2 sm:pt-4 pb-2 sm:pb-3 mb-1 sm:mb-2">
-        <div className="relative inline-block cursor-pointer hover:scale-105 transition-transform duration-200" onClick={handleTitleClick}>
-          <span className="absolute -top-6 sm:-top-8 left-1/2 transform -translate-x-1/2 text-3xl sm:text-4xl">👑</span>
-          <h1 className="game-title text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mt-4 sm:mt-6 px-2 sm:px-4">
-            World's Best TIC TAC TOE
-          </h1>
+    <main className="relative flex flex-col items-center min-h-screen p-2 sm:p-4 overflow-x-hidden">
+      {/* Animated background */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        {require('@/components/FallingSymbols').default()}
+      </div>
+
+      {/* Game Info Bar */}
+      <div className="relative z-10 w-full max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between bg-indigo-900/60 rounded-2xl border-2 border-indigo-400 px-4 py-3 mb-4 mt-2 shadow-lg gap-2">
+        <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-6 w-full md:w-auto justify-center">
+          <span className="font-bold text-indigo-200 text-xs sm:text-base">Player 1:</span>
+          <span className="font-bold text-blue-400 text-sm sm:text-lg">{players.player1.name} ({players.player1.symbol})</span>
+          <span className="font-bold text-indigo-200 text-xs sm:text-base">vs</span>
+          <span className="font-bold text-pink-400 text-sm sm:text-lg">{players.player2.name} ({players.player2.symbol})</span>
+        </div>
+        <div className="flex flex-row gap-4 items-center justify-center w-full md:w-auto">
+          <span className="font-bold text-yellow-300 text-xs sm:text-base">Score</span>
+          <span className="font-bold text-blue-400">X</span>
+          <span className="font-bold text-white">:</span>
+          <span className="font-bold text-pink-400">O</span>
         </div>
       </div>
 
-      <div className="w-full flex flex-col lg:flex-row lg:items-start lg:justify-center gap-4 max-w-7xl mx-auto">
-        <div className="w-full lg:w-3/5">
+      {/* Motivational Message */}
+      <div className="relative z-10 w-full max-w-2xl mx-auto text-center mb-4">
+        <div className="inline-block bg-purple-800/60 px-6 py-2 rounded-xl border-2 border-purple-400 shadow-md animate-pulse text-yellow-200 font-bold text-base sm:text-lg">
+          {`Good luck! May the best strategist win!`}
+        </div>
+      </div>
+
+      <div className="relative z-10 w-full flex flex-col lg:flex-row lg:items-start lg:justify-center gap-6 max-w-7xl mx-auto">
+        <div className="w-full lg:w-3/5 flex flex-col items-center">
           <TicTacToe
             currentUsername={players.player1.name}
             updateLeaderboard={updateLeaderboard}
@@ -184,10 +203,8 @@ export default function Home() {
             player2={players.player2}
           />
         </div>
-        
         <div className="w-full lg:w-2/5 flex flex-col">
           <Leaderboard data={leaderboard.slice(0, 10)} />
-          
           <div className="flex justify-center mt-2 sm:mt-4">
             <button 
               onClick={handleGameEnd}
@@ -201,8 +218,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      
-      <footer className="w-full text-center text-[10px] sm:text-xs text-indigo-300 opacity-70 mt-1 sm:mt-2">
+      <footer className="w-full text-center text-[10px] sm:text-xs text-indigo-300 opacity-70 mt-1 sm:mt-2 z-10">
         <p>Challenge a friend and see who's the Tic Tac Toe champion!</p>
       </footer>
     </main>

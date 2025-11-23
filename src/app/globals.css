@@ -1,9 +1,46 @@
+.game-board {
+  /* ...existing styles... */
+  animation: boardGlow 2s infinite alternate;
+
+
+@keyframes boardGlow {
+  0% {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5), 0 0 20px var(--game-secondary), 0 0 0px var(--game-accent);
+    border-color: var(--game-accent);
+  }
+  100% {
+    box-shadow: 0 5px 25px 5px var(--game-accent), 0 0 40px 10px var(--game-secondary);
+    border-color: var(--game-secondary);
+  }
+}
+/* --- THEME ROOT AND BODY --- */
+:root {
+  --game-primary: #7c1d1d; /* deep red */
+  --game-secondary: #b91c1c; /* strong red */
+  --game-accent: #ffd600; /* gold/yellow */
+  --game-background: #2d0900; /* dark brownish red */
+  --game-success: #ffd600; /* gold for success */
+  --game-danger: #b91c1c; /* strong red */
+  --game-x-color: #ffd600; /* gold/yellow for X */
+  --game-o-color: #b91c1c; /* red for O */
+}
+
+body {
+  background-color: var(--game-background);
+  background-image: radial-gradient(circle at 25px 25px, rgba(255, 214, 0, 0.08) 2%, transparent 0%),
+                    radial-gradient(circle at 75px 75px, rgba(185, 28, 28, 0.12) 2%, transparent 0%);
+  background-size: 100px 100px;
+  font-family: 'Bangers', cursive;
+  color: var(--game-accent);
+  display: flex;
+  flex-direction: column;
+}
 /* Playful card and animation for registration */
 .playful-card {
-  background: linear-gradient(135deg, #fcd34d 0%, #ec4899 50%, #7c3aed 100%);
+  background: linear-gradient(135deg, #ffd600 0%, #b91c1c 100%);
   border-radius: 2.5rem;
   border: 4px solid #fffbe6;
-  box-shadow: 0 8px 32px 0 rgba(252, 211, 77, 0.25), 0 0 40px 10px #ec4899;
+  box-shadow: 0 8px 32px 0 rgba(255, 214, 0, 0.25), 0 0 40px 10px #b91c1c;
   max-width: 440px;
   width: 100%;
   margin: 0 auto;
@@ -14,21 +51,14 @@
 }
 
 .playful-card:hover {
-  box-shadow: 0 16px 64px 0 rgba(252, 211, 77, 0.35), 0 0 80px 20px #ec4899;
+  box-shadow: 0 16px 64px 0 rgba(255, 214, 0, 0.35), 0 0 80px 20px #b91c1c;
   transform: scale(1.03) rotate(-1deg);
 }
 
 @keyframes bounceIn {
   0% {
     opacity: 0;
-    transform: scale(0.7) translateY(100px);
-  }
-  60% {
-    opacity: 1;
-    transform: scale(1.05) translateY(-10px);
-  }
-  80% {
-    transform: scale(0.98) translateY(5px);
+    transform: scale(0.7) translateY(-30px);
   }
   100% {
     opacity: 1;
@@ -36,18 +66,11 @@
   }
 }
 
+/* Playful title for registration */
 .playful-title {
   font-family: 'Bangers', cursive;
   letter-spacing: 2px;
-  text-shadow: 2px 2px 0px #fffbe6, 0 0 20px #fcd34d, 0 0 40px #ec4899;
-}
-
-.playful-btn {
-  font-family: 'Press Start 2P', cursive;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  border: 2px solid #fffbe6;
-  box-shadow: 0 2px 8px #fcd34d44;
+  color: var(--game-accent);
 }
 /* Landing page enhancements */
 .landing-bg {
@@ -64,81 +87,37 @@
 .landing-card {
   background: rgba(44, 22, 100, 0.95);
   border-radius: 2rem;
-  border: 3px solid var(--game-secondary);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37), 0 0 40px 10px var(--game-accent);
-  max-width: 420px;
-  width: 100%;
-  margin: 0 auto;
-  z-index: 10;
-  backdrop-filter: blur(2px);
-  transition: box-shadow 0.3s;
-}
-
-.landing-card:hover {
-  box-shadow: 0 12px 48px 0 rgba(31, 38, 135, 0.47), 0 0 60px 15px var(--game-accent);
-}
-
-.landing-bg-overlay {
+  .game-title {
+    font-family: 'Press Start 2P', cursive;
+    text-shadow: 4px 4px 0px var(--game-primary),
+                 0 0 20px var(--game-accent),
+                 0 0 40px var(--game-secondary);
+    color: var(--game-accent);
+    letter-spacing: 2px;
+    line-height: 1.6;
+    display: inline-block;
+    padding: 1rem;
+    border-radius: 1rem;
+    background-color: rgba(185, 28, 28, 0.25);
+    border: 3px solid var(--game-secondary);
+    text-align: center;
+    transition: all 0.3s ease;
+  }
   position: absolute;
   inset: 0;
   background: linear-gradient(120deg, rgba(76,29,149,0.2) 0%, rgba(252,211,77,0.08) 100%);
   pointer-events: none;
   z-index: 1;
 }
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Press+Start+2P&display=swap');
 
-:root {
-  --game-primary: #4c1d95;
-  --game-secondary: #7c3aed;
-  --game-accent: #fcd34d;
-  --game-background: #2d1b69;
-  --game-success: #10b981;
-  --game-danger: #ef4444;
-  --game-x-color: #3b82f6;
-  --game-o-color: #ec4899;
-}
 
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-}
 
-body {
-  background-color: var(--game-background);
-  background-image: radial-gradient(circle at 25px 25px, rgba(255, 255, 255, 0.2) 2%, transparent 0%), 
-                    radial-gradient(circle at 75px 75px, rgba(255, 255, 255, 0.2) 2%, transparent 0%);
-  background-size: 100px 100px;
-  font-family: 'Bangers', cursive;
-  color: white;
-  display: flex;
-  flex-direction: column;
-}
 
-.game-title {
-  font-family: 'Press Start 2P', cursive;
-  text-shadow: 4px 4px 0px var(--game-primary),
-               0 0 20px var(--game-accent);
-  color: var(--game-accent);
-  letter-spacing: 2px;
-  line-height: 1.6;
-  display: inline-block;
-  padding: 1rem;
-  border-radius: 1rem;
-  background-color: rgba(76, 29, 149, 0.3);
-  border: 3px solid rgba(124, 58, 237, 0.5);
-  text-align: center;
-  transition: all 0.3s ease;
-}
 
 .game-title:hover {
-  border-color: rgba(124, 58, 237, 0.8);
-  background-color: rgba(76, 29, 149, 0.5);
+  border-color: #ffd600;
+  background-color: rgba(185, 28, 28, 0.5);
   text-shadow: 4px 4px 0px var(--game-primary),
                0 0 30px var(--game-accent),
                0 0 50px var(--game-accent);
@@ -188,11 +167,12 @@ body {
   background-color: var(--game-primary);
   border-radius: 12px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5), 
-              inset 0 0 8px rgba(255, 255, 255, 0.3),
-              0 0 20px rgba(124, 58, 237, 0.5);
-  border: 3px solid var(--game-secondary);
+              inset 0 0 8px rgba(255, 214, 0, 0.15),
+              0 0 20px var(--game-secondary);
+  border: 3px solid var(--game-accent);
   position: relative;
   overflow: hidden;
+  animation: boardGlow 2s infinite alternate;
 }
 
 .game-board::before {
@@ -254,12 +234,15 @@ body {
   text-shadow: 0 0 8px rgba(59, 130, 246, 0.7);
 }
 
+.x-mark {
+  color: var(--game-x-color);
+  text-shadow: 0 0 8px rgba(255, 214, 0, 0.7);
+
 .o-mark {
   color: var(--game-o-color);
-  text-shadow: 0 0 8px rgba(236, 72, 153, 0.7);
+  text-shadow: 0 0 8px rgba(185, 28, 28, 0.7);
 }
 
-/* Celebration animations */
 @keyframes popIn {
   0% {
     transform: scale(0.1);
@@ -394,17 +377,16 @@ body {
   animation: fallRotate linear infinite;
 }
 
+
 .falling-symbol.x-symbol {
   color: var(--game-x-color);
-  text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+  text-shadow: 0 0 10px rgba(255, 214, 0, 0.5);
 }
-
 .falling-symbol.o-symbol {
   color: var(--game-o-color);
-  text-shadow: 0 0 10px rgba(236, 72, 153, 0.5);
+  text-shadow: 0 0 10px rgba(185, 28, 28, 0.5);
 }
 
-/* GitHub Link Animation */
 @keyframes pulse-glow {
   0% {
     box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
