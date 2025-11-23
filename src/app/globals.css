@@ -1,4 +1,8 @@
- .game-board {
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.game-board {
   /* ...existing styles... */
   animation: boardGlow 2s infinite alternate;
 }
