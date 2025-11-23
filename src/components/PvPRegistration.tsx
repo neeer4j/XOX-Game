@@ -38,7 +38,7 @@ const PvPRegistration: React.FC<PvPRegistrationProps> = ({ onRegister, previousU
   return (
     <div className="landing-bg min-h-screen w-full flex items-center justify-center relative overflow-hidden">
       <FallingSymbols />
-      <div className="landing-card w-full max-w-md mx-auto px-3 sm:px-0 py-8 sm:py-10 z-10">
+      <div className="landing-card w-full max-w-3xl mx-auto px-4 sm:px-8 py-10 sm:py-14 z-10">
         <div className="mb-6 sm:mb-8">
           <button
             onClick={onBack}
@@ -58,20 +58,20 @@ const PvPRegistration: React.FC<PvPRegistrationProps> = ({ onRegister, previousU
             </p>
           </div>
         </div>
-        <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
-          {/* Player 1 Section */}
-          <div className="bg-indigo-900/30 rounded-xl p-3 sm:p-4 border-2 border-indigo-400/30">
-            <h2 className="text-base sm:text-lg font-bold text-white mb-2 sm:mb-3">Player 1</h2>
-            <div className="grid grid-cols-2 gap-2 sm:gap-3">
+        <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Player 1 Section */}
+            <div className="bg-indigo-900/30 rounded-xl p-4 md:p-6 border-2 border-indigo-400/30 flex flex-col gap-3">
+              <h2 className="text-lg font-bold text-white mb-2">Player 1</h2>
               <div>
-                <label className="block text-xs sm:text-sm font-medium text-gray-200 mb-1 sm:mb-2">Name</label>
+                <label className="block text-sm font-medium text-gray-200 mb-2">Name</label>
                 <div className="relative">
                   <input
                     type="text"
                     value={player1Name}
                     onChange={(e) => setPlayer1Name(e.target.value)}
                     onFocus={() => setShowPreviousUsers1(true)}
-                    className="w-full px-3 py-2 bg-gray-700/50 border-2 border-gray-600 rounded-lg text-white text-sm sm:text-base
+                    className="w-full px-4 py-3 bg-gray-700/50 border-2 border-gray-600 rounded-lg text-white text-base
                              focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
                     placeholder="Enter name"
                   />
@@ -85,7 +85,7 @@ const PvPRegistration: React.FC<PvPRegistrationProps> = ({ onRegister, previousU
                             setPlayer1Name(user);
                             setShowPreviousUsers1(false);
                           }}
-                          className="w-full px-3 py-1.5 text-left text-white text-sm hover:bg-purple-600/20 transition-colors"
+                          className="w-full px-4 py-2 text-left text-white text-base hover:bg-purple-600/20 transition-colors"
                         >
                           {user}
                         </button>
@@ -95,12 +95,12 @@ const PvPRegistration: React.FC<PvPRegistrationProps> = ({ onRegister, previousU
                 </div>
               </div>
               <div>
-                <label className="block text-xs sm:text-sm font-medium text-gray-200 mb-1 sm:mb-2">Symbol</label>
-                <div className="grid grid-cols-2 gap-2 sm:gap-3">
+                <label className="block text-sm font-medium text-gray-200 mb-2">Symbol</label>
+                <div className="grid grid-cols-2 gap-3">
                   <button
                     type="button"
                     onClick={() => setPlayer1Symbol('X')}
-                    className={`py-2 sm:py-3 rounded-lg font-bold text-xl sm:text-2xl transition-all duration-300
+                    className={`py-3 rounded-lg font-bold text-2xl transition-all duration-300
                       ${player1Symbol === 'X'
                         ? 'bg-purple-600 text-white shadow-[0_0_15px_rgba(168,85,247,0.5)]'
                         : 'bg-gray-700/50 text-gray-400 hover:bg-gray-700/70'
@@ -111,7 +111,7 @@ const PvPRegistration: React.FC<PvPRegistrationProps> = ({ onRegister, previousU
                   <button
                     type="button"
                     onClick={() => setPlayer1Symbol('O')}
-                    className={`py-2 sm:py-3 rounded-lg font-bold text-xl sm:text-2xl transition-all duration-300
+                    className={`py-3 rounded-lg font-bold text-2xl transition-all duration-300
                       ${player1Symbol === 'O'
                         ? 'bg-blue-600 text-white shadow-[0_0_15px_rgba(59,130,246,0.5)]'
                         : 'bg-gray-700/50 text-gray-400 hover:bg-gray-700/70'
@@ -122,20 +122,18 @@ const PvPRegistration: React.FC<PvPRegistrationProps> = ({ onRegister, previousU
                 </div>
               </div>
             </div>
-          </div>
-          {/* Player 2 Section */}
-          <div className="bg-indigo-900/30 rounded-xl p-3 sm:p-4 border-2 border-indigo-400/30">
-            <h2 className="text-base sm:text-lg font-bold text-white mb-2 sm:mb-3">Player 2</h2>
-            <div className="grid grid-cols-2 gap-2 sm:gap-3">
+            {/* Player 2 Section */}
+            <div className="bg-indigo-900/30 rounded-xl p-4 md:p-6 border-2 border-indigo-400/30 flex flex-col gap-3">
+              <h2 className="text-lg font-bold text-white mb-2">Player 2</h2>
               <div>
-                <label className="block text-xs sm:text-sm font-medium text-gray-200 mb-1 sm:mb-2">Name</label>
+                <label className="block text-sm font-medium text-gray-200 mb-2">Name</label>
                 <div className="relative">
                   <input
                     type="text"
                     value={player2Name}
                     onChange={(e) => setPlayer2Name(e.target.value)}
                     onFocus={() => setShowPreviousUsers2(true)}
-                    className="w-full px-3 py-2 bg-gray-700/50 border-2 border-gray-600 rounded-lg text-white text-sm sm:text-base
+                    className="w-full px-4 py-3 bg-gray-700/50 border-2 border-gray-600 rounded-lg text-white text-base
                              focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                     placeholder="Enter name"
                   />
@@ -149,7 +147,7 @@ const PvPRegistration: React.FC<PvPRegistrationProps> = ({ onRegister, previousU
                             setPlayer2Name(user);
                             setShowPreviousUsers2(false);
                           }}
-                          className="w-full px-3 py-1.5 text-left text-white text-sm hover:bg-blue-600/20 transition-colors"
+                          className="w-full px-4 py-2 text-left text-white text-base hover:bg-blue-600/20 transition-colors"
                         >
                           {user}
                         </button>
@@ -159,8 +157,8 @@ const PvPRegistration: React.FC<PvPRegistrationProps> = ({ onRegister, previousU
                 </div>
               </div>
               <div>
-                <label className="block text-xs sm:text-sm font-medium text-gray-200 mb-1 sm:mb-2">Symbol</label>
-                <div className="py-2 sm:py-3 rounded-lg bg-gray-700/50 text-center font-bold text-xl sm:text-2xl text-gray-400">
+                <label className="block text-sm font-medium text-gray-200 mb-2">Symbol</label>
+                <div className="py-3 rounded-lg bg-gray-700/50 text-center font-bold text-2xl text-gray-400">
                   {player1Symbol === 'X' ? 'O' : 'X'}
                 </div>
               </div>
