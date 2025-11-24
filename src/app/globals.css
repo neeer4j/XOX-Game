@@ -18,10 +18,10 @@
 }
 /* --- THEME ROOT AND BODY --- */
 :root {
-  --game-primary: #7c1d1d; /* deep red */
-  --game-secondary: #b91c1c; /* strong red */
-  --game-accent: #ffd600; /* gold/yellow */
-  --game-background: #2d0900; /* dark brownish red */
+  --game-primary: #0b1220; /* deep neutral */
+  --game-secondary: #262f3a; /* subtle dark */
+  --game-accent: #ffd600; /* accent stays gold */
+  --game-background: #070912; /* near-black background for minimalist */
   --game-success: #ffd600; /* gold for success */
   --game-danger: #b91c1c; /* strong red */
   --game-x-color: #ffd600; /* gold/yellow for X */
@@ -30,30 +30,24 @@
 
 body {
   background-color: var(--game-background);
-  background-image: radial-gradient(circle at 25px 25px, rgba(255, 214, 0, 0.08) 2%, transparent 0%),
-                    radial-gradient(circle at 75px 75px, rgba(185, 28, 28, 0.12) 2%, transparent 0%);
-  background-size: 100px 100px;
-  font-family: 'Bangers', cursive;
-  color: var(--game-accent);
+  color: #e6e6e6;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
 }
 /* Playful card and animation for registration */
 .playful-card {
-  background: linear-gradient(135deg, #ffd600 0%, #b91c1c 100%);
-  border-radius: 2.5rem;
-  border: 4px solid #fffbe6;
-  box-shadow: 0 8px 32px 0 rgba(255, 214, 0, 0.25), 0 0 40px 10px #b91c1c;
-  max-width: 440px;
+  background: transparent;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.04);
+  max-width: 480px;
   width: 100%;
-  margin: 0 auto;
+  margin: 24px auto;
   z-index: 10;
-  backdrop-filter: blur(2px);
-  transition: box-shadow 0.3s, transform 0.2s;
-  animation: bounceIn 1s cubic-bezier(.68,-0.55,.27,1.55);
+  padding: 18px;
 }
 
 .playful-card:hover {
@@ -74,49 +68,44 @@ body {
 
 /* Playful title for registration */
 .playful-title {
-  font-family: 'Bangers', cursive;
-  letter-spacing: 2px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
   color: var(--game-accent);
 }
 /* Landing page enhancements */
 .landing-bg {
-  background-color: var(--game-background);
-  background-image: radial-gradient(circle at 25px 25px, rgba(255, 255, 255, 0.2) 2%, transparent 0%),
-    radial-gradient(circle at 75px 75px, rgba(255, 255, 255, 0.2) 2%, transparent 0%);
-  background-size: 100px 100px;
+  background: transparent;
   min-height: 100vh;
-  width: 100vw;
+  width: 100%;
   position: relative;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 16px;
 }
 
 .landing-card {
-  background: rgba(44, 22, 100, 0.95);
-  border-radius: 2rem;
-  padding: 1.5rem;
-  max-width: 920px;
-  width: calc(100% - 2rem);
+  background: rgba(255,255,255,0.02);
+  border-radius: 8px;
+  padding: 24px;
+  max-width: 780px;
+  width: 100%;
   margin: 0 auto;
   z-index: 1;
-  background: linear-gradient(120deg, rgba(76,29,149,0.08) 0%, rgba(255,214,0,0.02) 100%);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+  box-shadow: none;
 }
 
 .landing-card .game-title {
-  font-family: 'Press Start 2P', cursive;
-  text-shadow: 4px 4px 0px var(--game-primary),
-               0 0 20px var(--game-accent),
-               0 0 40px var(--game-secondary);
-  color: var(--game-accent);
-  letter-spacing: 2px;
-  line-height: 1.6;
-  display: inline-block;
-  padding: 1rem;
-  border-radius: 1rem;
-  background-color: rgba(185, 28, 28, 0.15);
-  border: 3px solid var(--game-secondary);
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto;
+  color: #f8f8f8;
+  letter-spacing: 0.6px;
+  line-height: 1.2;
+  font-weight: 700;
   text-align: center;
-  transition: all 0.3s ease;
+  background: transparent;
+  padding: 8px 12px;
+  border-radius: 6px;
 }
 
 
@@ -173,38 +162,32 @@ body {
 }
 
 .game-board {
-  background-color: var(--game-primary);
-  border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5), 
-              inset 0 0 8px rgba(255, 214, 0, 0.15),
-              0 0 20px var(--game-secondary);
-  border: 3px solid var(--game-accent);
+  background: transparent;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.04);
   position: relative;
-  overflow: hidden;
-  animation: boardGlow 2s infinite alternate;
+  overflow: visible;
+  max-width: 380px;
+  margin: 0 auto 12px auto;
+  padding: 8px;
 }
 
 .game-board::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-  z-index: 1;
-  /* pointer-events: none; */
+  display: none;
 }
 
 .game-square {
-  transition: all 0.2s ease;
-  transform: scale(0.95);
-  font-family: 'Bangers', cursive;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  transform: none;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.04);
+  color: #f8f8f8;
 }
 
 .game-square:hover:not(:disabled) {
-  transform: scale(1);
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.45);
 }
 
 .game-button {

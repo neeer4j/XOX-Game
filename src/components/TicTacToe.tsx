@@ -103,24 +103,26 @@ const TicTacToe: React.FC<TicTacToeProps> = ({
       let showCelebration = false;
       let winnerUsername = '';
       
-      if (winner === 'X') {
-        newXScore++;
+      if (winner === 'X' || winner === 'O') {
         showCelebration = true;
-        winnerUsername = player1.name;
-        // Update leaderboard when X wins (player is X)
-        // Just increment by 1, don't use the local score
-        updateLeaderboard(player1.name, 1);
-        gameEndedRef.current = true;
-      } else if (winner === 'O') {
-        newOScore++;
-        showCelebration = true;
-        winnerUsername = player2.name;
+        // Map symbol to player name dynamically
+        const winnerSymbol = winner as 'X' | 'O'
+        winnerUsername = (player1.symbol === winnerSymbol) ? player1.name : player2.name
+
+        if (winnerSymbol === 'X') newXScore++;
+        if (winnerSymbol === 'O') newOScore++;
+
+        // Update leaderboard for human players (don't add wins for "Computer")
+        if (winnerUsername && winnerUsername !== 'Computer') {
+          updateLeaderboard(winnerUsername, 1);
+        }
+
         gameEndedRef.current = true;
       } else if (winner === null && squares.every(square => square !== null)) {
         newDraws++;
       }
-      
-      if (winner) {
+
+      if (showCelebration) {
         setWinnerName(winnerUsername);
       }
       
@@ -162,11 +164,11 @@ const TicTacToe: React.FC<TicTacToeProps> = ({
     const newSquares = [...squares]
     newSquares[i] = xIsNext ? player1.symbol : player2.symbol
 
-    setState({
-      ...state,
+    setState(prev => ({
+      ...prev,
       squares: newSquares,
-      xIsNext: !xIsNext,
-    })
+      xIsNext: !prev.xIsNext,
+    }))
   }
 
   // Reset game
@@ -313,20 +315,24 @@ const TicTacToe: React.FC<TicTacToeProps> = ({
 
   // Replace the existing makeComputerMove function with this improved version
   const makeComputerMove = (currentBoard: (Player)[]) => {
-    const computerSymbol = xIsNext ? player1.symbol : player2.symbol;
-    const humanSymbol = xIsNext ? player2.symbol : player1.symbol;
-    
-    const bestMove = findBestMove(currentBoard, computerSymbol, humanSymbol);
-    
-    if (bestMove !== -1) {
+    setState(prev => {
+      const computerSymbol = prev.xIsNext ? prev.xIsNext ? player1.symbol : player2.symbol : prev.xIsNext ? player1.symbol : player2.symbol;
+      // Determine computer/human symbols based on prev.xIsNext
+      const compSymbol = prev.xIsNext ? player1.symbol : player2.symbol;
+      const humanSymbol = prev.xIsNext ? player2.symbol : player1.symbol;
+
+      const bestMove = findBestMove(currentBoard, compSymbol, humanSymbol);
+      if (bestMove === -1) return prev;
+
       const newBoard = [...currentBoard];
-      newBoard[bestMove] = computerSymbol;
-      setState(prevState => ({
-        ...prevState,
+      newBoard[bestMove] = compSymbol;
+
+      return {
+        ...prev,
         squares: newBoard,
-        xIsNext: !xIsNext,
-      }));
-    }
+        xIsNext: !prev.xIsNext,
+      }
+    })
   };
 
   return (
