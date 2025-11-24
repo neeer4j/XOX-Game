@@ -255,9 +255,8 @@ const TicTacToe: React.FC<TicTacToeProps> = ({
     return (
       <button
         className={`game-square w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 text-3xl sm:text-4xl md:text-5xl font-bold flex items-center justify-center 
-          ${isWinningSquare ? 'bg-green-500 bg-opacity-30' : 'bg-indigo-900 bg-opacity-50'} 
-          border-2 border-indigo-400 rounded-lg m-0.5 
-          ${value === 'X' ? 'x-mark' : value === 'O' ? 'o-mark' : 'text-white hover:bg-indigo-800 hover:bg-opacity-70'}`}
+          border rounded-md m-0.5 flex items-center justify-center
+          ${isWinningSquare ? 'winning-square' : ''} ${value === 'X' ? 'x-mark' : value === 'O' ? 'o-mark' : ''}`}
         onClick={() => handleClick(i)}
         disabled={!!squares[i] || gameOver}
       >

@@ -232,6 +232,24 @@ body {
 /* Landing overlay (disabled for minimalist) */
 .landing-bg-overlay { display: none; }
 
+/* Neutralize unexpected hover background colors inside landing card and the game board */
+.landing-card button:hover,
+.landing-card .game-square:hover,
+.landing-card input:hover,
+.game-board .game-square:hover,
+.game-board button:hover,
+.game-board input:hover {
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+/* Winning square highlight */
+.winning-square {
+  background: linear-gradient(90deg, rgba(255,214,0,0.06), rgba(185,28,28,0.04)) !important;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35) !important;
+}
+
 .winner-text {
   text-shadow: 0 0 10px rgba(255, 255, 100, 0.8);
   animation: pulse 0.8s infinite;
