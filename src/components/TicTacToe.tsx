@@ -74,6 +74,14 @@ const TicTacToe: React.FC<TicTacToeProps> = ({
     return () => window.removeEventListener('resize', updateWindowSize)
   }, [])
 
+  // Prevent body scrolling while celebration popup is visible
+  useEffect(() => {
+    if (!showCelebration) return
+    const prevOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => { document.body.style.overflow = prevOverflow }
+  }, [showCelebration])
+
   // Sound effects
   useEffect(() => {
     // We'll just define these but not implement actual audio
@@ -162,8 +170,46 @@ const TicTacToe: React.FC<TicTacToeProps> = ({
     if (squares[i] || gameOver) return
 
     const newSquares = [...squares]
-    newSquares[i] = xIsNext ? player1.symbol : player2.symbol
+    const currentSymbol = xIsNext ? player1.symbol : player2.symbol
+    newSquares[i] = currentSymbol
 
+    // Check for a winner immediately to avoid race conditions when clicking fast
+    const immediateWinner = calculateWinner(newSquares)
+
+    if (immediateWinner) {
+      const winnerSymbol = immediateWinner as 'X' | 'O'
+      const winnerUsernameLocal = (player1.symbol === winnerSymbol) ? player1.name : player2.name
+
+      // update state immediately to lock the board
+      setState(prev => ({
+        ...prev,
+        squares: newSquares,
+        xIsNext: !prev.xIsNext,
+        winner: immediateWinner,
+        gameOver: true,
+        showCelebration: true,
+        xScore: winnerSymbol === 'X' ? prev.xScore + 1 : prev.xScore,
+        oScore: winnerSymbol === 'O' ? prev.oScore + 1 : prev.oScore,
+      }))
+
+      // Update leaderboard only for human players
+      if (winnerUsernameLocal && winnerUsernameLocal !== 'Computer') {
+        updateLeaderboard(winnerUsernameLocal, 1)
+      }
+
+      setWinnerName(winnerUsernameLocal)
+      gameEndedRef.current = true
+
+      // Hide celebration after delay and return to registration
+      setTimeout(() => {
+        setState(prev => ({ ...prev, showCelebration: false }))
+        setTimeout(() => onGameEnd(), 1000)
+      }, 5000)
+
+      return
+    }
+
+    // No immediate winner, update board normally
     setState(prev => ({
       ...prev,
       squares: newSquares,
