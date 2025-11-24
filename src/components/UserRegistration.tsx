@@ -32,9 +32,7 @@ const UserRegistration: React.FC<UserRegistrationProps> = ({ onRegister, previou
         <div className="mb-6 sm:mb-8">
           <button
             onClick={onBack}
-            className="mb-4 sm:mb-6 px-3 sm:px-4 py-2 bg-gradient-to-r from-gray-800 to-gray-700 text-white rounded-xl
-                     hover:from-gray-700 hover:to-gray-600 transform hover:scale-[1.02] transition-all duration-200
-                     shadow-[0_0_15px_rgba(75,85,99,0.3)] hover:shadow-[0_0_20px_rgba(75,85,99,0.5)] flex items-center gap-2 text-sm sm:text-base font-medium"
+            className="mb-4 sm:mb-6 flex items-center gap-2 text-sm sm:text-base font-medium secondary-button"
           >
             <span className="text-base sm:text-lg">←</span>
             <span>Back to Mode Selection</span>
@@ -98,9 +96,7 @@ const UserRegistration: React.FC<UserRegistrationProps> = ({ onRegister, previou
           )}
           <button
             type="submit"
-            className="w-full py-3 px-4 sm:px-6 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-sm sm:text-base font-bold rounded-xl
-                     hover:from-blue-700 hover:to-indigo-700 transform hover:scale-[1.02] transition-all duration-200
-                     shadow-[0_0_15px_rgba(59,130,246,0.3)] hover:shadow-[0_0_20px_rgba(59,130,246,0.5)]"
+            className="w-full py-3 px-4 sm:px-6 text-sm sm:text-base font-bold rounded-xl game-button"
           >
             Start Game
           </button>

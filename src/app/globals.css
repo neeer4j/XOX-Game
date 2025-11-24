@@ -219,6 +219,19 @@ body {
   box-shadow: 0 4px 10px rgba(0,0,0,0.2) !important;
 }
 
+/* Secondary button for less-prominent actions */
+.secondary-button {
+  background: transparent !important;
+  color: #e6e6e6 !important;
+  border: 1px solid rgba(255,255,255,0.06) !important;
+  padding: .45rem .9rem !important;
+  border-radius: .5rem !important;
+  box-shadow: none !important;
+}
+
+/* Landing overlay (disabled for minimalist) */
+.landing-bg-overlay { display: none; }
+
 .winner-text {
   text-shadow: 0 0 10px rgba(255, 255, 100, 0.8);
   animation: pulse 0.8s infinite;
