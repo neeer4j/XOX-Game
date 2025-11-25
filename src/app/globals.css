@@ -114,11 +114,9 @@ body {
 
 
 .game-title:hover {
-  border-color: #ffd600;
-  background-color: rgba(185, 28, 28, 0.5);
-  text-shadow: 4px 4px 0px var(--game-primary),
-               0 0 30px var(--game-accent),
-               0 0 50px var(--game-accent);
+  border-color: var(--game-accent);
+  background-color: transparent;
+  text-shadow: 0 0 10px var(--game-accent);
 }
 
 @keyframes floatTitle {
