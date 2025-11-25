@@ -18,14 +18,14 @@
 }
 /* --- THEME ROOT AND BODY --- */
 :root {
-  --game-primary: #0b1220; /* deep neutral */
-  --game-secondary: #262f3a; /* subtle dark */
-  --game-accent: #ffd600; /* accent stays gold */
-  --game-background: #070912; /* near-black background for minimalist */
-  --game-success: #ffd600; /* gold for success */
-  --game-danger: #b91c1c; /* strong red */
-  --game-x-color: #ffd600; /* gold/yellow for X */
-  --game-o-color: #b91c1c; /* red for O */
+  --game-primary: #190824; /* deep purple */
+  --game-secondary: #3a1f4a; /* muted purple */
+  --game-accent: #ffd166; /* warm gold accent */
+  --game-background: #0a0212; /* near-black with purple tint */
+  --game-success: #ffd166; /* gold for success */
+  --game-danger: #d946ef; /* magenta-ish accent */
+  --game-x-color: #ffd166; /* gold for X */
+  --game-o-color: #c084fc; /* violet for O */
 }
 
 body {
@@ -51,7 +51,7 @@ body {
 }
 
 .playful-card:hover {
-  box-shadow: 0 16px 64px 0 rgba(255, 214, 0, 0.35), 0 0 80px 20px #b91c1c;
+  box-shadow: 0 16px 64px 0 rgba(255,209,102,0.20), 0 0 80px 24px rgba(192,132,252,0.12);
   transform: scale(1.03) rotate(-1deg);
 }
 
@@ -198,18 +198,18 @@ body {
   line-height: 1;
   cursor: pointer;
   /* Force theme colors over Tailwind utility classes */
-  background: linear-gradient(90deg, var(--game-accent) 0%, var(--game-secondary) 100%) !important;
-  color: #111827 !important;
+  background: linear-gradient(90deg, var(--game-secondary) 0%, var(--game-accent) 100%) !important;
+  color: #0b0220 !important;
   padding: .5rem 1rem !important;
   border-radius: .5rem !important;
   border: 2px solid rgba(0,0,0,0.18) !important;
-  box-shadow: 0 8px 24px rgba(185,28,28,0.18), 0 0 18px rgba(255,214,0,0.08) !important;
+  box-shadow: 0 8px 24px rgba(58,31,74,0.18), 0 0 18px rgba(255,209,102,0.10) !important;
   text-shadow: 0 1px 0 rgba(255,255,255,0.05);
 }
 
 .game-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 36px rgba(185,28,28,0.28), 0 0 28px rgba(255,214,0,0.18) !important;
+  box-shadow: 0 12px 36px rgba(58,31,74,0.30), 0 0 28px rgba(255,209,102,0.22) !important;
 }
 
 .game-button:active {
@@ -244,7 +244,7 @@ body {
 
 /* Winning square highlight */
 .winning-square {
-  background: linear-gradient(90deg, rgba(255,214,0,0.06), rgba(185,28,28,0.04)) !important;
+  background: linear-gradient(90deg, rgba(255,209,102,0.06), rgba(58,31,74,0.04)) !important;
   box-shadow: 0 6px 18px rgba(0,0,0,0.35) !important;
 }
 
