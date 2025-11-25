@@ -451,13 +451,13 @@ const TicTacToe: React.FC<TicTacToeProps> = ({
       {/* Game controls */}
       <div className="flex flex-row gap-2 sm:gap-4">
         <button
-          className="game-button px-4 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg shadow-lg border-b-4 border-indigo-800"
+          className="game-button px-4 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm rounded-lg"
           onClick={resetGame}
         >
           New Game
         </button>
         <button
-          className="game-button px-4 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm bg-purple-600 hover:bg-purple-700 text-white rounded-lg shadow-lg border-b-4 border-purple-800"
+          className="game-button px-4 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm rounded-lg"
           onClick={resetScores}
         >
           Reset Scores

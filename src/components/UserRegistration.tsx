@@ -70,7 +70,7 @@ const UserRegistration: React.FC<UserRegistrationProps> = ({ onRegister, previou
                           setUsername(user);
                           setShowPreviousUsers(false);
                         }}
-                        className="w-full px-3 py-1.5 text-left text-white text-xs sm:text-sm hover:bg-blue-600/20 transition-colors"
+                        className="w-full px-3 py-1.5 text-left text-white text-xs sm:text-sm transition-colors"
                       >
                         {user}
                       </button>

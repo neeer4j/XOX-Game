@@ -85,7 +85,7 @@ const PvPRegistration: React.FC<PvPRegistrationProps> = ({ onRegister, previousU
                             setPlayer1Name(user);
                             setShowPreviousUsers1(false);
                           }}
-                          className="w-full px-4 py-2 text-left text-white text-base hover:bg-purple-600/20 transition-colors"
+                         className="w-full px-4 py-2 text-left text-white text-base transition-colors"
                         >
                           {user}
                         </button>
@@ -114,7 +114,7 @@ const PvPRegistration: React.FC<PvPRegistrationProps> = ({ onRegister, previousU
                     className={`py-3 rounded-lg font-bold text-2xl transition-all duration-300
                       ${player1Symbol === 'O'
                         ? 'bg-blue-600 text-white shadow-[0_0_15px_rgba(59,130,246,0.5)]'
-                        : 'bg-gray-700/50 text-gray-400 hover:bg-gray-700/70'
+                         : 'bg-gray-700/50 text-gray-400'
                       }`}
                   >
                     O
@@ -147,7 +147,7 @@ const PvPRegistration: React.FC<PvPRegistrationProps> = ({ onRegister, previousU
                             setPlayer2Name(user);
                             setShowPreviousUsers2(false);
                           }}
-                          className="w-full px-4 py-2 text-left text-white text-base hover:bg-blue-600/20 transition-colors"
+                           className="w-full px-4 py-2 text-left text-white text-base transition-colors"
                         >
                           {user}
                         </button>
