@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Ensure the theme background is applied at the highest level to avoid
+   any component or Tailwind utility overriding the page background. */
+html, body, #__next, main {
+  background-color: var(--game-background) !important;
+  color: inherit;
+  min-height: 100vh;
+}
+
 .game-board {
   /* ...existing styles... */
   animation: boardGlow 2s infinite alternate;
