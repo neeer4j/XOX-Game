@@ -18,10 +18,12 @@ const FallingSymbols: React.FC = () => {
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
   useEffect(() => {
-    // Set initial dimensions
+    // Set initial dimensions for the falling area (centered panel)
+    const areaWidth = Math.min(window.innerWidth * 0.9, 720);
+    const areaHeight = Math.max(window.innerHeight * 0.5, 400);
     setDimensions({
-      width: window.innerWidth,
-      height: window.innerHeight
+      width: areaWidth,
+      height: areaHeight
     });
 
     // Handle window resize
@@ -34,15 +36,15 @@ const FallingSymbols: React.FC = () => {
 
     window.addEventListener('resize', handleResize);
 
-    // Initialize symbols
+    // Initialize symbols inside the centered area
     const initialSymbols: Symbol[] = Array.from({ length: 20 }, (_, i) => ({
       id: i,
-      x: Math.random() * window.innerWidth,
-      y: Math.random() * window.innerHeight * -1, // Start above the screen
-      speed: 0.5 + Math.random() * 1.5,
+      x: Math.random() * Math.min(window.innerWidth * 0.9, 720),
+      y: -Math.random() * 200, // start slightly above the area
+      speed: 0.6 + Math.random() * 1.6,
       symbol: Math.random() > 0.5 ? 'X' : 'O',
-      size: 20 + Math.random() * 30,
-      opacity: 0.1 + Math.random() * 0.3,
+      size: 26 + Math.random() * 28, // a bit larger
+      opacity: 0.15 + Math.random() * 0.5,
       rotation: Math.random() * 360
     }));
 
@@ -55,12 +57,13 @@ const FallingSymbols: React.FC = () => {
         prevSymbols.map(symbol => {
           // Update position
           let newY = symbol.y + symbol.speed;
-          let newRotation = symbol.rotation + 0.2;
+          let newRotation = symbol.rotation + 0.6;
 
-          // Reset if symbol goes off screen
-          if (newY > window.innerHeight) {
-            newY = -50; // Reset to above screen
-            symbol.x = Math.random() * window.innerWidth;
+          // Reset if symbol goes off the bottom of the falling area
+          const areaH = Math.max(window.innerHeight * 0.5, 400);
+          if (newY > areaH + 40) {
+            newY = -40; // Reset to above area
+            symbol.x = Math.random() * Math.min(window.innerWidth * 0.9, 720);
           }
 
           return {
@@ -83,20 +86,30 @@ const FallingSymbols: React.FC = () => {
     };
   }, []);
 
-  return (
-    <div className="fixed inset-0 pointer-events-none overflow-hidden">
+    return (
+    <div
+      className="fixed pointer-events-none overflow-hidden"
+      style={{
+        left: '50%',
+        top: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: Math.min(window.innerWidth * 0.9, 720),
+        height: Math.max(window.innerHeight * 0.5, 400),
+        zIndex: 0
+      }}
+    >
       {symbols.map(symbol => (
         <div
           key={symbol.id}
-          className={`absolute ${symbol.symbol === 'X' ? 'text-blue-500' : 'text-pink-500'} font-bold`}
+          className={`absolute ${symbol.symbol === 'X' ? 'text-yellow-300' : 'text-purple-300'} font-extrabold`}
           style={{
             left: symbol.x,
             top: symbol.y,
             fontSize: `${symbol.size}px`,
-            opacity: symbol.opacity,
+            opacity: Math.min(1, symbol.opacity),
             transform: `rotate(${symbol.rotation}deg)`,
             transition: 'transform 0.1s linear',
-            textShadow: `0 0 10px ${symbol.symbol === 'X' ? '#3b82f6' : '#ec4899'}`
+            textShadow: `0 0 8px ${symbol.symbol === 'X' ? 'rgba(212,175,55,0.8)' : 'rgba(107,33,168,0.6)'}`
           }}
         >
           {symbol.symbol}
