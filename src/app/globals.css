@@ -27,10 +27,10 @@ html, body, #__next, main {
 /* --- THEME ROOT AND BODY --- */
 :root {
   /* Light purple + gold theme */
-  --game-primary: #efe6fb; /* very light purple (cards/background elements) */
-  --game-secondary: #d6c5f0; /* muted lavender */
+  --game-primary: #2a1533; /* deep panel purple */
+  --game-secondary: #392042; /* muted deep lavender */
   --game-accent: #d4af37; /* warm gold accent for primary actions */
-  --game-background: #f7f3fb; /* overall page background (very light purple) */
+  --game-background: #0b0420; /* dark page background */
   --game-success: #ffd166; /* gold for success */
   --game-danger: #a855f7; /* bright purple for accents */
   --game-x-color: #d4af37; /* gold for X */
@@ -39,7 +39,7 @@ html, body, #__next, main {
 
 body {
   background-color: var(--game-background);
-  color: #2b1b3a; /* dark purple text for readability */
+  color: #e9e6f7; /* light text for contrast on dark background */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -49,19 +49,19 @@ body {
 }
 /* Playful card and animation for registration */
 .playful-card {
-  /* remove card visuals — keep as simple container */
+  /* keep container narrow and centered, but not light */
   background: transparent !important;
-  border-radius: 0 !important;
+  border-radius: 8px !important;
   border: none !important;
-  max-width: 100% !important;
+  max-width: 720px !important;
   width: 100%;
-  margin: 0 !important;
+  margin: 16px auto !important;
   z-index: 1;
-  padding: 0 !important;
+  padding: 12px 16px !important;
 }
 
 .playful-card:hover {
-  box-shadow: none !important;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.45) !important;
   transform: none !important;
 }
 
@@ -90,33 +90,33 @@ body {
   position: relative;
   overflow: visible;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  padding: 32px 12px;
+  padding: 36px 12px;
 }
 
 .landing-card {
-  /* remove card look — simple transparent layout container */
-  background: transparent !important;
-  border-radius: 0 !important;
-  padding: 0 !important;
-  max-width: 100% !important;
+  /* centered narrow panel with subtle dark tint */
+  background: linear-gradient(180deg, rgba(20,10,40,0.55), rgba(30,15,60,0.55)) !important;
+  border-radius: 12px !important;
+  padding: 20px 18px !important;
+  max-width: 720px !important;
   width: 100%;
-  margin: 0 !important;
-  z-index: 1;
-  box-shadow: none !important;
+  margin: 12px auto !important;
+  z-index: 2;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.6) !important;
 }
 
 .landing-card .game-title {
   font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto;
-  color: var(--game-danger);
-  letter-spacing: 0.4px;
+  color: var(--game-accent);
+  letter-spacing: 0.6px;
   line-height: 1.15;
   font-weight: 800;
   text-align: center;
   background: transparent;
-  padding: 6px 8px;
-  border-radius: 0;
+  padding: 8px 12px;
+  border-radius: 6px;
 }
 
 
@@ -171,14 +171,14 @@ body {
 }
 
 .game-board {
-  background: transparent;
-  border-radius: 6px;
-  border: none;
+  background: linear-gradient(180deg, rgba(30,15,60,0.6), rgba(25,10,50,0.6));
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.03);
   position: relative;
   overflow: visible;
   max-width: 420px;
-  margin: 8px auto 12px auto;
-  padding: 6px;
+  margin: 12px auto;
+  padding: 12px;
 }
 
 .game-board::before {
@@ -189,9 +189,9 @@ body {
   transition: transform 0.12s ease, box-shadow 0.12s ease;
   transform: none;
   font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto;
-  background: linear-gradient(180deg, rgba(255,255,255,0.8), rgba(246,240,252,0.9));
-  border: 1px solid rgba(90,60,120,0.08);
-  color: var(--game-danger);
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.03);
+  color: var(--game-accent);
 }
 
 .game-square:hover:not(:disabled) {
