@@ -90,9 +90,9 @@ body {
   position: relative;
   overflow: visible;
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding: 36px 12px;
+  align-items: center; /* center vertically */
+  justify-content: center; /* center horizontally */
+  padding: 24px 12px; /* slightly smaller padding to aid centering */
 }
 
 .landing-card {
